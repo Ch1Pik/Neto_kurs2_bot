@@ -17,7 +17,7 @@ def get_password():
 
 # Функция добавления пользователя Telegram в таблицу users
 def add_user(name, surname, nickname):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             cur.execute("""
                             INSERT INTO users (name, surname, nickname) 
@@ -30,7 +30,7 @@ def add_user(name, surname, nickname):
 
 # Функция выбора случайного слова для перевода
 def get_one_random_word(current_user_id):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             try:  # Попытка получения случайной пары слов из таблицы words
                 # Выбор одной случайной строки из таблицы words
@@ -52,7 +52,7 @@ def get_one_random_word(current_user_id):
 
 # Функция выбора случайных трех слов для неправильных ответов
 def get_three_random_words(current_user_id, target_word):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             cur.execute("""
                     SELECT eng, rus FROM words
@@ -71,7 +71,7 @@ def get_three_random_words(current_user_id, target_word):
 
 # Функция возвращающая id текущего пользователя Telegram-бота
 def get_current_user_id(name):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             cur.execute("""
                             SELECT id FROM users  
@@ -84,7 +84,7 @@ def get_current_user_id(name):
 
 # Функция добавления слов в таблицу words пользователем
 def add_user_words(conn, eng, rus, user_id):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO words(eng, rus) 
@@ -109,7 +109,7 @@ def add_user_words(conn, eng, rus, user_id):
 
 # Функция удаления слов из таблицы words
 def delete_words(word, user_id):
-    with psycopg2.connect(database=get_password()[1], user="postgres", password=get_password()[0]) as conn:
+    with psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2]) as conn:
         with conn.cursor() as cur:
             cur.execute(""" 
                 SELECT id FROM words
