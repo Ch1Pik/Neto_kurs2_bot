@@ -26,7 +26,6 @@ def add_user(name, surname, nickname):
                             RETURNING id, name, surname, nickname""", (name, surname, nickname))
             print(f"Добавлен пользователь {name} {surname} под ником: {nickname}")
             conn.commit()
-    conn.close()
 
 
 # Функция выбора случайного слова для перевода
@@ -49,7 +48,6 @@ def get_one_random_word(current_user_id):
                     print("Таблица 'words' пуста.")
             except psycopg2.Error as f:  # Вывод ошибки в консоль при неудачном выполнении запроса
                 print("Ошибка при выполнении запроса:", f)
-    conn.close()
 
 
 # Функция выбора случайных трех слов для неправильных ответов
@@ -69,7 +67,6 @@ def get_three_random_words(current_user_id, target_word):
                 word_info = row[0]
                 others.append(word_info)
             return others  # Возвращаем список трех случайных слов
-    conn.close()
 
 
 # Функция возвращающая id текущего пользователя Telegram-бота
@@ -83,7 +80,6 @@ def get_current_user_id(name):
             curUser = cur.fetchone()
             conn.commit()
     return curUser  # Возвращаем id текущего пользователя Telegram-бота
-    conn.close()
 
 
 # Функция добавления слов в таблицу words пользователем
@@ -109,7 +105,6 @@ def add_user_words(conn, eng, rus, user_id):
                 print(f'Добавлена новая пара слов английское слово - русский перевод')
                 conn.commit()
                 return True
-    conn.close()
 
 
 # Функция удаления слов из таблицы words
@@ -145,6 +140,3 @@ def delete_words(word, user_id):
                     return False
             else:
                 return False
-    conn.close()
-
-
