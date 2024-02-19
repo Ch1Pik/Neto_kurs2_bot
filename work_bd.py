@@ -8,10 +8,11 @@ import configparser
 def get_password():
     data = configparser.ConfigParser()
     data.read('password.ini')
+    user_name = data["password"]["user_name"]
     password = data["password"]["password"]
     name_bd = data["password"]["name_bd"]
     token = data["password"]["token"]
-    return [password, name_bd, token]
+    return [name_db, user_name, password, token]
 
 
 # Функция добавления пользователя Telegram в таблицу users
