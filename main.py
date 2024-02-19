@@ -16,7 +16,7 @@ from work_bd import get_three_random_words
 
 try:
     # Попытка подключения с БД и проверка на ошибку
-    connection = psycopg2.connect(dbname=get_password()[1], user='postgres', password=get_password()[0])
+    connection = psycopg2.connect(dbname=get_password()[0], user='get_password()[1]', password=get_password()[2])
 except:
     # Выполнение если подключение не удалось
     print('Не удалось подключится к базе данных')
@@ -29,7 +29,7 @@ cursor = connection.cursor()
 state_storage = StateMemoryStorage()
 
 # Установка значения токена Telegram-бота
-token_bot = get_password()[2]
+token_bot = get_password()[3]
 bot = TeleBot(token_bot, state_storage=state_storage)
 
 known_users = []
@@ -44,7 +44,7 @@ def show_hint(*lines):
 
 # Функция показывающая слово для перевода
 def show_target(data):
-    return f'слово ({data['target_word']}) переводится как ({data['translate_word']})'
+    return f"слово ({data['target_word']}) переводится как ({data['translate_word']})"
 
 
 class Command:  # Надписи на кнопках в Telegram-боте
