@@ -46,7 +46,7 @@ ___
 - [db_models.py](db_models.py) - чтение и запись в БД.
 - [fsm_forms.py](fsm_forms.py) - удаление и добавление слов.
 - [handlers.py](handlers.py) - хендлеры.
-- [keyboards.py](keyboards.py) - кнопочки
+- [keyboards.py](keyboards.py) - кнопочки.
 - [requirements.txt](requirements.txt) - файл с зависимостями.
 - [readme.md](readme.md) - документация по использованию программы.
 - [checking_tasks.md](checking_tasks.md) - файл для проверки соответствия поставленному ТЗ.
